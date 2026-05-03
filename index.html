@@ -368,6 +368,55 @@
 
     .bar { background: rgba(148, 163, 184, 0.22); }
 
+
+    /* Ajuste de espaciado en la tarjeta demo del hero */
+    .hero-card {
+      padding: 30px;
+    }
+
+    .browser {
+      border-radius: 30px;
+    }
+
+    .browser-top {
+      padding: 16px 20px;
+      gap: 18px;
+    }
+
+    .url {
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.10);
+      border: 1px solid rgba(125, 211, 252, 0.14);
+      letter-spacing: 0.01em;
+    }
+
+    .chat-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 26px;
+    }
+
+    .bubble {
+      margin-bottom: 0;
+      padding: 15px 18px;
+    }
+
+    .intent-panel {
+      margin-top: 4px;
+      padding: 20px;
+    }
+
+    .intent-row {
+      margin-top: 16px;
+      gap: 18px;
+    }
+
+    .bar {
+      margin-top: 7px;
+    }
+
     .flow-step {
       border-color: rgba(125, 211, 252, 0.18);
       background: rgba(8, 28, 45, 0.78);
@@ -445,6 +494,99 @@
         linear-gradient(135deg, rgba(3, 17, 31, 0.94), rgba(10, 68, 76, 0.92) 55%, rgba(7, 89, 133, 0.90));
     }
 
+
+
+    /* Marco teórico */
+    .theory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .theory-card {
+      position: relative;
+      min-height: 240px;
+      padding: 26px;
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      border-radius: 28px;
+      background: rgba(8, 28, 45, 0.76);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .theory-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -80px;
+      top: -80px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.20), transparent 70%);
+    }
+
+    .theory-tag {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 7px 11px;
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      border-radius: 999px;
+      color: #bffaff;
+      background: rgba(56, 189, 248, 0.12);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .theory-card h3 {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 12px;
+      color: #f8fafc;
+      font-size: 25px;
+      letter-spacing: -0.015em;
+    }
+
+    .theory-card p {
+      position: relative;
+      z-index: 2;
+      color: #b7c9da;
+      line-height: 1.75;
+    }
+
+    .theory-card strong { color: #eaf6ff; }
+
+    .theory-summary {
+      margin-top: 26px;
+      padding: 30px;
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(45, 212, 191, 0.16), transparent 32%),
+        linear-gradient(135deg, rgba(8, 28, 45, 0.88), rgba(10, 45, 67, 0.78));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .theory-summary h3 {
+      margin-bottom: 10px;
+      color: #f8fafc;
+      font-size: 24px;
+      letter-spacing: -0.012em;
+    }
+
+    .theory-summary p {
+      max-width: 900px;
+      color: #b7c9da;
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
     @media (max-width: 1100px) {
       .nav { width: calc(100% - 24px); }
       .nav-links a { padding: 8px 9px; font-size: 12px; }
@@ -466,7 +608,8 @@
       .flow-step:not(:last-child)::after { top: auto; right: 50%; bottom: -28px; transform: translateX(50%) rotate(90deg); }
       .pipeline-row { grid-template-columns: 1fr; }
       .arrow-circle { margin: -2px auto; transform: rotate(90deg); }
-      .hero-card { min-height: auto; padding: 18px; border-radius: 32px; }
+      .hero-card { min-height: auto; padding: 22px; border-radius: 32px; }
+      .chat-demo { padding: 22px; gap: 14px; }
       .chart-card { height: auto; min-height: 330px; padding: 22px; }
       .comparison { display: block; overflow-x: auto; white-space: nowrap; }
       .comparison th, .comparison td { min-width: 220px; white-space: normal; }
@@ -481,13 +624,13 @@
       .eyebrow { max-width: 100%; font-size: 12px; line-height: 1.35; padding: 8px 12px; }
       .hero-actions { align-items: stretch; }
       .button { width: 100%; min-height: 50px; }
-      .hero-card { padding: 12px; border-radius: 28px; }
+      .hero-card { padding: 14px; border-radius: 28px; }
       .browser { border-radius: 22px; }
-      .browser-top { padding: 12px; }
-      .url { font-size: 11px; }
-      .chat-demo { padding: 14px; }
-      .bubble { max-width: 100%; font-size: 13px; }
-      .intent-panel { padding: 14px; border-radius: 20px; }
+      .browser-top { padding: 13px 14px; }
+      .url { font-size: 11px; padding: 6px 10px; }
+      .chat-demo { padding: 16px; gap: 12px; }
+      .bubble { max-width: 100%; font-size: 13px; padding: 13px 15px; }
+      .intent-panel { padding: 15px; border-radius: 20px; }
       .intent-row { grid-template-columns: 1fr; gap: 6px; }
       .pad { padding: 22px; }
       .card, .stat, .pipeline, .final-quote, .architecture { border-radius: 24px; }
@@ -505,6 +648,20 @@
       .timeline-dot { width: 42px; height: 42px; border-radius: 16px; }
       .final-quote { padding: 34px 22px; }
       .final-quote p { font-size: 16px; }
+    }
+
+
+
+    @media (max-width: 960px) {
+      .theory-grid { grid-template-columns: 1fr; }
+      .theory-card { min-height: auto; }
+    }
+
+    @media (max-width: 640px) {
+      .theory-grid { gap: 16px; }
+      .theory-card { padding: 22px; border-radius: 24px; }
+      .theory-card h3 { font-size: 22px; }
+      .theory-summary { padding: 24px; border-radius: 24px; }
     }
 
     @media (max-width: 420px) {
@@ -530,6 +687,7 @@
     <div class="nav-links" id="navLinks">
       <a href="#problema">Problema</a>
       <a href="#solucion">Solución</a>
+      <a href="#marco-teorico">Marco teórico</a>
       <a href="#dataset">Dataset</a>
       <a href="#modelo">Modelo</a>
       <a href="#resultados">Resultados</a>
@@ -617,10 +775,132 @@
       </div>
     </section>
 
+
+    <section id="marco-teorico">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-kicker">03 · Marco teórico</div>
+          <h2>Conceptos clave para entender Canvitas.</h2>
+          <p class="lead">
+            Esta sección explica de forma sencilla las tecnologías y conceptos que hacen posible
+            que Canvitas entienda lenguaje natural y lo convierta en acciones dentro de Canvas LMS.
+          </p>
+        </div>
+
+        <div class="theory-grid">
+          <div class="theory-card reveal">
+            <div class="theory-tag">Modelo</div>
+            <h3>MiniLM</h3>
+            <p>
+              MiniLM es un modelo de inteligencia artificial ligero basado en Transformers.
+              Sirve para entender texto, pero consume menos recursos que modelos más grandes.
+              En Canvitas se usa para interpretar lo que el usuario escribe.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Diálogo</div>
+            <h3>ToD</h3>
+            <p>
+              ToD significa <strong>Task-oriented Dialogue</strong>, o diálogo orientado a tareas.
+              Es un sistema que no solo conversa, sino que busca completar una acción concreta,
+              como consultar tareas, calificaciones o cursos.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Lenguaje</div>
+            <h3>NLU</h3>
+            <p>
+              NLU significa <strong>Natural Language Understanding</strong>.
+              Es la parte de la IA que permite comprender qué quiere decir una persona cuando escribe
+              una frase normal, aunque no use comandos exactos.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Etiquetado</div>
+            <h3>IOB</h3>
+            <p>
+              IOB es una forma de marcar palabras dentro de una frase.
+              Indica si una palabra está al inicio de una entidad, dentro de una entidad
+              o fuera de cualquier entidad. Es útil para detectar datos como curso, tarea o fecha.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Entrenamiento</div>
+            <h3>AdamW</h3>
+            <p>
+              AdamW es un algoritmo que ayuda a entrenar modelos de IA.
+              Ajusta los parámetros del modelo poco a poco para que aprenda mejor,
+              evitando que memorice demasiado los datos de entrenamiento.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Entidades</div>
+            <h3>NER</h3>
+            <p>
+              NER significa <strong>Named Entity Recognition</strong>.
+              Es la tarea de encontrar información importante dentro de una frase,
+              como nombres de cursos, fechas, tareas, usuarios o identificadores.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Framework</div>
+            <h3>PyTorch</h3>
+            <p>
+              PyTorch es una herramienta para construir y entrenar modelos de inteligencia artificial.
+              En este proyecto se utiliza durante la etapa de entrenamiento y evaluación del modelo.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Despliegue</div>
+            <h3>ONNX</h3>
+            <p>
+              ONNX es un formato que permite exportar modelos de IA para usarlos en otros entornos.
+              Ayuda a que el modelo entrenado pueda ejecutarse de forma más eficiente fuera de PyTorch.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">Chatbots</div>
+            <h3>RASA</h3>
+            <p>
+              RASA es una plataforma para crear asistentes conversacionales.
+              Permite manejar intenciones, entidades y flujos de conversación.
+              Se menciona como comparación porque Canvitas resuelve parte de esto con un modelo propio.
+            </p>
+          </div>
+
+          <div class="theory-card reveal">
+            <div class="theory-tag">APIs</div>
+            <h3>NL2API</h3>
+            <p>
+              NL2API significa convertir lenguaje natural en llamadas a una API.
+              En otras palabras, transforma una frase como “muéstrame mis tareas”
+              en una acción estructurada que un sistema puede ejecutar.
+            </p>
+          </div>
+        </div>
+
+        <div class="theory-summary reveal">
+          <h3>En conjunto</h3>
+          <p>
+            Canvitas combina NLU, NER, MiniLM y un enfoque ToD para entender frases escritas en español.
+            Después, organiza esa información para preparar acciones compatibles con Canvas LMS.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="nlu">
       <div class="container split-card">
         <div class="reveal">
-          <div class="section-kicker">03 · Comprensión del lenguaje natural</div>
+          <div class="section-kicker">04 · Comprensión del lenguaje natural</div>
           <h2>Canvitas hace dos tareas clave.</h2>
           <p class="lead">Primero clasifica qué quiere hacer el usuario. Después detecta los datos importantes dentro de la frase: curso, tarea, fecha, usuario o identificadores.</p>
           <div class="example-box"><strong>Frase:</strong> “Entrega de proyecto final mañana”<div class="annotation"><span class="token">Entrega<small>acción</small></span><span class="token">proyecto final<small>tarea</small></span><span class="token">mañana<small>fecha</small></span></div></div>
@@ -632,14 +912,14 @@
     <section id="dataset">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="section-kicker">04 · Dataset sintético</div>
+          <div class="section-kicker">05 · Dataset sintético</div>
           <h2>Como no existía un corpus de Canvas en español, se construyó uno.</h2>
           <p class="lead">El generador sintético controlado V2 produjo ejemplos con diferentes longitudes, niveles de ambigüedad y variación lingüística.</p>
         </div>
         <div class="big-stats reveal">
-          <div class="stat"><strong>12,600</strong><span>ejemplos generados</span></div>
-          <div class="stat"><strong>36</strong><span>intenciones de usuario</span></div>
-          <div class="stat"><strong>33</strong><span>tipos de entidades IOB</span></div>
+          <div class="stat"><strong><span class="dataset-count" data-target="12600" data-format="comma">0</span></strong><span>ejemplos generados</span></div>
+          <div class="stat"><strong><span class="dataset-count" data-target="36">0</span></strong><span>intenciones de usuario</span></div>
+          <div class="stat"><strong><span class="dataset-count" data-target="33">0</span></strong><span>tipos de entidades IOB</span></div>
         </div>
         <div class="grid-3" style="margin-top: 24px;">
           <div class="card pad reveal"><h3>Léxico</h3><p>Verbos de acción, verbos suaves, objetos semánticos, entidades realistas y modificadores.</p></div>
@@ -651,21 +931,21 @@
 
     <section id="generador">
       <div class="container grid-2">
-        <div class="card pad reveal"><div class="section-kicker">05 · Generador V2</div><h2>Las frases no se generan al azar.</h2><p class="lead">El sistema combina plantillas gramaticales con léxico filtrado por intención, valida coherencia semántica y reintenta si la frase no cumple reglas.</p></div>
+        <div class="card pad reveal"><div class="section-kicker">06 · Generador V2</div><h2>Las frases no se generan al azar.</h2><p class="lead">El sistema combina plantillas gramaticales con léxico filtrado por intención, valida coherencia semántica y reintenta si la frase no cumple reglas.</p></div>
         <div class="card pad reveal"><h3>Ejemplo de construcción</h3><div class="example-box"><p><strong>Plantilla:</strong> VERBO + OBJETO + del + CURSO</p><p><strong>Léxico:</strong> consultar + calificaciones + curso IA</p><p><strong>Resultado:</strong> “Quiero consultar las calificaciones del curso IA, por favor”</p><p><strong>Salida:</strong> <span class="code-pill">obtener_calificaciones</span> <span class="code-pill">curso = IA</span></p></div></div>
       </div>
     </section>
 
     <section id="modelo">
       <div class="container split-card">
-        <div class="architecture reveal"><div class="section-kicker" style="color:#7dd3fc;">06 · Arquitectura</div><h2 style="font-size: 40px; color:white;">Un modelo, dos salidas.</h2><div class="model-core"><div><strong style="font-size: 28px;">MiniLM</strong><p style="margin-top:8px;color:#bae6fd;">Transformer ligero multilingüe</p></div></div><div class="heads"><div class="head"><strong>Salida 1</strong><p>Clasificación de intenciones</p></div><div class="head"><strong>Salida 2</strong><p>Etiquetado token por token</p></div></div></div>
+        <div class="architecture reveal"><div class="section-kicker" style="color:#7dd3fc;">07 · Arquitectura</div><h2 style="font-size: 40px; color:white;">Un modelo, dos salidas.</h2><div class="model-core"><div><strong style="font-size: 28px;">MiniLM</strong><p style="margin-top:8px;color:#bae6fd;">Transformer ligero multilingüe</p></div></div><div class="heads"><div class="head"><strong>Salida 1</strong><p>Clasificación de intenciones</p></div><div class="head"><strong>Salida 2</strong><p>Etiquetado token por token</p></div></div></div>
         <div class="card pad reveal"><div class="section-kicker">Entrenamiento</div><h2 style="font-size: 40px;">Aprendizaje multitarea.</h2><p class="lead">Se entrenó con AdamW, batch size 64, 12 épocas y pérdida ponderada para priorizar entidades.</p><div class="example-box"><span class="code-pill">L = 0.5 · Lintent</span><span class="code-pill">+ 1.5 · Lentity</span></div><p style="margin-top:18px;color:var(--muted);line-height:1.7;">La ponderación se ajustó porque las intenciones saturaban rápido, mientras que NER necesitaba más peso para mejorar.</p></div>
       </div>
     </section>
 
     <section id="resultados">
       <div class="container">
-        <div class="section-heading reveal"><div class="section-kicker">07 · Resultados</div><h2>El mejor modelo alcanzó precisión alta y exportación estable.</h2><p class="lead">El modelo 5 obtuvo 98.4% en intenciones, 99.55% en entidades y coincidencia de predicciones del 100% entre PyTorch y ONNX.</p></div>
+        <div class="section-heading reveal"><div class="section-kicker">08 · Resultados</div><h2>El mejor modelo alcanzó precisión alta y exportación estable.</h2><p class="lead">El modelo 5 obtuvo 98.4% en intenciones, 99.55% en entidades y coincidencia de predicciones del 100% entre PyTorch y ONNX.</p></div>
         <div class="grid-2">
           <div class="chart-card reveal"><h3>Precisión final</h3><canvas id="barChart" width="520" height="300" aria-label="Gráfica de barras de precisión final"></canvas></div>
           <div class="chart-card reveal"><h3>Evolución de modelos</h3><canvas id="lineChart" width="520" height="300" aria-label="Gráfica de línea de evolución de modelos"></canvas></div>
@@ -675,14 +955,14 @@
 
     <section id="comparacion">
       <div class="container">
-        <div class="section-heading reveal"><div class="section-kicker">08 · Comparación</div><h2>¿Qué hace diferente a Canvitas?</h2><p class="lead">Frente a enfoques basados en LLMs o pipelines más complejos, Canvitas prioriza ligereza, control explícito de ambigüedad y despliegue sencillo.</p></div>
+        <div class="section-heading reveal"><div class="section-kicker">09 · Comparación</div><h2>¿Qué hace diferente a Canvitas?</h2><p class="lead">Frente a enfoques basados en LLMs o pipelines más complejos, Canvitas prioriza ligereza, control explícito de ambigüedad y despliegue sencillo.</p></div>
         <div class="reveal"><table class="comparison"><thead><tr><th>Sistema</th><th>Enfoque</th><th>Diferencia de Canvitas</th></tr></thead><tbody><tr><td><strong>NL2API</strong></td><td>Usa LLMs para generar llamadas o JSON de API.</td><td>Canvitas usa MiniLM: menor costo, menor latencia y mayor control.</td></tr><tr><td><strong>Aila</strong></td><td>Asistente generativo integrado con Canvas.</td><td>Canvitas no genera contenido: traduce intenciones a acciones concretas.</td></tr><tr><td><strong>RASA + Canvas</strong></td><td>Pipeline conversacional con slot filling.</td><td>Canvitas usa un solo modelo multitarea para intención y entidades.</td></tr></tbody></table></div>
       </div>
     </section>
 
     <section id="futuro">
       <div class="container grid-2">
-        <div class="reveal"><div class="section-kicker">09 · Limitaciones</div><h2>Qué falta mejorar.</h2><p class="lead">Aunque los resultados son altos, el sistema aún depende de datos sintéticos y requiere un diálogo multi-turno completo para conservar contexto.</p><div class="example-box"><strong>Ejemplo:</strong> si el usuario dice “Revísalo”, Canvitas necesita contexto previo para saber a qué se refiere.</div></div>
+        <div class="reveal"><div class="section-kicker">10 · Limitaciones</div><h2>Qué falta mejorar.</h2><p class="lead">Aunque los resultados son altos, el sistema aún depende de datos sintéticos y requiere un diálogo multi-turno completo para conservar contexto.</p><div class="example-box"><strong>Ejemplo:</strong> si el usuario dice “Revísalo”, Canvitas necesita contexto previo para saber a qué se refiere.</div></div>
         <div class="timeline reveal">
           <div class="timeline-item"><div class="timeline-dot">1</div><div class="card pad"><h3>Dataset más natural</h3><p>Reescritura con modelos más avanzados y datos reales.</p></div></div>
           <div class="timeline-item"><div class="timeline-dot">2</div><div class="card pad"><h3>DST completo</h3><p>Seguimiento de estado para diálogos multi-turno.</p></div></div>
@@ -923,6 +1203,52 @@
       ctx.fillStyle = "#38bdf8"; ctx.fillRect(w - 170, 20, 12, 12); ctx.fillStyle = "#9fb4c8"; ctx.fillText("Intención", w - 150, 31);
       ctx.fillStyle = "#2dd4bf"; ctx.fillRect(w - 170, 42, 12, 12); ctx.fillStyle = "#9fb4c8"; ctx.fillText("Entidades", w - 150, 53);
     }
+
+    function animateDatasetNumbers() {
+      const counters = document.querySelectorAll("#dataset .dataset-count");
+
+      counters.forEach(counter => {
+        if (counter.dataset.animated === "true") return;
+        counter.dataset.animated = "true";
+
+        const target = Number(counter.dataset.target);
+        const useComma = counter.dataset.format === "comma";
+        const duration = target > 1000 ? 1150 : 850;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const current = Math.round(target * eased);
+
+          counter.textContent = useComma
+            ? current.toLocaleString("en-US")
+            : current;
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            counter.textContent = useComma
+              ? target.toLocaleString("en-US")
+              : target;
+          }
+        }
+
+        requestAnimationFrame(tick);
+      });
+    }
+
+    const datasetSection = document.getElementById("dataset");
+    const datasetObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateDatasetNumbers();
+          datasetObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    if (datasetSection) datasetObserver.observe(datasetSection);
 
     drawBarChart();
     drawLineChart();
