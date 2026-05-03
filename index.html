@@ -588,6 +588,128 @@
       font-size: 17px;
     }
 
+
+
+    /* Integrantes */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .team-card {
+      position: relative;
+      min-height: 250px;
+      padding: 28px;
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(45, 212, 191, 0.14), transparent 34%),
+        rgba(8, 28, 45, 0.76);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+      transition: 0.22s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(125, 211, 252, 0.34);
+      box-shadow: 0 28px 78px rgba(0, 0, 0, 0.38);
+    }
+
+    .team-card::before {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      right: -95px;
+      top: -95px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 70%);
+    }
+
+    .team-avatar {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+      border-radius: 24px;
+      color: #03111f;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 16px 34px rgba(56, 189, 248, 0.24);
+      font-size: 24px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
+
+    .team-card h3 {
+      position: relative;
+      z-index: 2;
+      color: #f8fafc;
+      font-size: 23px;
+      line-height: 1.18;
+      letter-spacing: -0.018em;
+    }
+
+    .team-card p {
+      position: relative;
+      z-index: 2;
+      margin-top: 12px;
+      color: #b7c9da;
+      line-height: 1.7;
+    }
+
+    .team-role {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 18px;
+      padding: 8px 12px;
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      border-radius: 999px;
+      color: #bffaff;
+      background: rgba(56, 189, 248, 0.12);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 960px) {
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .team-card {
+        min-height: auto;
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .team-avatar {
+        width: 62px;
+        height: 62px;
+        border-radius: 20px;
+        font-size: 21px;
+      }
+
+      .team-card h3 {
+        font-size: 21px;
+      }
+    }
+
     @media (max-width: 1100px) {
       .nav { width: calc(100% - 24px); }
       .nav-links a { padding: 8px 9px; font-size: 12px; }
@@ -686,6 +808,7 @@
       <span>Canvitas</span>
     </a>
     <div class="nav-links" id="navLinks">
+      <a href="#integrantes">Integrantes</a>
       <a href="#problema">Problema</a>
       <a href="#solucion">Solución</a>
       <a href="#marco-teorico">Marco teórico</a>
@@ -736,10 +859,67 @@
       </div>
     </section>
 
+    <section id="integrantes">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-kicker">01 · Integrantes</div>
+          <h2>Equipo de desarrollo de Canvitas.</h2>
+          <p class="lead">
+            Proyecto desarrollado por un equipo de seis integrantes, combinando análisis,
+            diseño, entrenamiento del modelo, documentación y desarrollo web.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-avatar">RD</div>
+            <h3>Roman Del Angel Juarez</h3>
+            <p>Integrante del equipo Canvitas.</p>
+            <span class="team-role">Desarrollo</span>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar">ON</div>
+            <h3>Omar Emiliano Novella Arteaga</h3>
+            <p>Integrante del equipo Canvitas.</p>
+            <span class="team-role">Desarrollo</span>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar">JS</div>
+            <h3>Juan Carlos Seidller Ferniza</h3>
+            <p>Integrante del equipo Canvitas.</p>
+            <span class="team-role">Desarrollo</span>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar">BL</div>
+            <h3>Benjamin Axel Lobato Cerecedo</h3>
+            <p>Integrante del equipo Canvitas.</p>
+            <span class="team-role">Desarrollo</span>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar">LU</div>
+            <h3>Luis Alejandro Urbina Gómez</h3>
+            <p>Integrante del equipo Canvitas.</p>
+            <span class="team-role">Desarrollo</span>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-avatar">AV</div>
+            <h3>Andrea Vega Fong</h3>
+            <p>Integrante del equipo Canvitas.</p>
+            <span class="team-role">Desarrollo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="problema">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="section-kicker">01 · Problema</div>
+          <div class="section-kicker">02 · Problema</div>
           <h2>Canvas puede ser poderoso, pero no siempre es intuitivo.</h2>
           <p class="lead">Los usuarios no expertos deben navegar menús, cursos, tareas y calificaciones. Canvitas reduce esa fricción permitiendo pedir acciones con frases naturales.</p>
         </div>
@@ -753,7 +933,7 @@
     <section id="solucion">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="section-kicker">02 · Solución propuesta</div>
+          <div class="section-kicker">03 · Solución propuesta</div>
           <h2>Un sistema híbrido: MiniLM entiende, ToD decide.</h2>
           <p class="lead">Canvitas no depende de un LLM pesado. Usa un modelo MiniLM para NLU y un gestor de diálogo orientado a tareas para ejecutar, confirmar o preguntar cuando hay ambigüedad.</p>
         </div>
@@ -780,7 +960,7 @@
     <section id="marco-teorico">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="section-kicker">03 · Marco teórico</div>
+          <div class="section-kicker">04 · Marco teórico</div>
           <h2>Conceptos clave para entender Canvitas.</h2>
           <p class="lead">
             Esta sección explica de forma sencilla las tecnologías y conceptos que hacen posible
@@ -901,7 +1081,7 @@
     <section id="nlu">
       <div class="container split-card">
         <div class="reveal">
-          <div class="section-kicker">04 · Comprensión del lenguaje natural</div>
+          <div class="section-kicker">05 · Comprensión del lenguaje natural</div>
           <h2>Canvitas hace dos tareas clave.</h2>
           <p class="lead">Primero clasifica qué quiere hacer el usuario. Después detecta los datos importantes dentro de la frase: curso, tarea, fecha, usuario o identificadores.</p>
           <div class="example-box"><strong>Frase:</strong> “Entrega de proyecto final mañana”<div class="annotation"><span class="token">Entrega<small>acción</small></span><span class="token">proyecto final<small>tarea</small></span><span class="token">mañana<small>fecha</small></span></div></div>
@@ -913,7 +1093,7 @@
     <section id="dataset">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="section-kicker">05 · Dataset sintético</div>
+          <div class="section-kicker">06 · Dataset sintético</div>
           <h2>Como no existía un corpus de Canvas en español, se construyó uno.</h2>
           <p class="lead">El generador sintético controlado V2 produjo ejemplos con diferentes longitudes, niveles de ambigüedad y variación lingüística.</p>
         </div>
@@ -932,21 +1112,21 @@
 
     <section id="generador">
       <div class="container grid-2">
-        <div class="card pad reveal"><div class="section-kicker">06 · Generador V2</div><h2>Las frases no se generan al azar.</h2><p class="lead">El sistema combina plantillas gramaticales con léxico filtrado por intención, valida coherencia semántica y reintenta si la frase no cumple reglas.</p></div>
+        <div class="card pad reveal"><div class="section-kicker">07 · Generador V2</div><h2>Las frases no se generan al azar.</h2><p class="lead">El sistema combina plantillas gramaticales con léxico filtrado por intención, valida coherencia semántica y reintenta si la frase no cumple reglas.</p></div>
         <div class="card pad reveal"><h3>Ejemplo de construcción</h3><div class="example-box"><p><strong>Plantilla:</strong> VERBO + OBJETO + del + CURSO</p><p><strong>Léxico:</strong> consultar + calificaciones + curso IA</p><p><strong>Resultado:</strong> “Quiero consultar las calificaciones del curso IA, por favor”</p><p><strong>Salida:</strong> <span class="code-pill">obtener_calificaciones</span> <span class="code-pill">curso = IA</span></p></div></div>
       </div>
     </section>
 
     <section id="modelo">
       <div class="container split-card">
-        <div class="architecture reveal"><div class="section-kicker" style="color:#7dd3fc;">07 · Arquitectura</div><h2 style="font-size: 40px; color:white;">Un modelo, dos salidas.</h2><div class="model-core"><div><strong style="font-size: 28px;">MiniLM</strong><p style="margin-top:8px;color:#bae6fd;">Transformer ligero multilingüe</p></div></div><div class="heads"><div class="head"><strong>Salida 1</strong><p>Clasificación de intenciones</p></div><div class="head"><strong>Salida 2</strong><p>Etiquetado token por token</p></div></div></div>
+        <div class="architecture reveal"><div class="section-kicker" style="color:#7dd3fc;">08 · Arquitectura</div><h2 style="font-size: 40px; color:white;">Un modelo, dos salidas.</h2><div class="model-core"><div><strong style="font-size: 28px;">MiniLM</strong><p style="margin-top:8px;color:#bae6fd;">Transformer ligero multilingüe</p></div></div><div class="heads"><div class="head"><strong>Salida 1</strong><p>Clasificación de intenciones</p></div><div class="head"><strong>Salida 2</strong><p>Etiquetado token por token</p></div></div></div>
         <div class="card pad reveal"><div class="section-kicker">Entrenamiento</div><h2 style="font-size: 40px;">Aprendizaje multitarea.</h2><p class="lead">Se entrenó con AdamW, batch size 64, 12 épocas y pérdida ponderada para priorizar entidades.</p><div class="example-box"><span class="code-pill">L = 0.5 · Lintent</span><span class="code-pill">+ 1.5 · Lentity</span></div><p style="margin-top:18px;color:var(--muted);line-height:1.7;">La ponderación se ajustó porque las intenciones saturaban rápido, mientras que NER necesitaba más peso para mejorar.</p></div>
       </div>
     </section>
 
     <section id="resultados">
       <div class="container">
-        <div class="section-heading reveal"><div class="section-kicker">08 · Resultados</div><h2>El mejor modelo alcanzó precisión alta y exportación estable.</h2><p class="lead">El modelo 5 obtuvo 98.4% en intenciones, 99.55% en entidades y coincidencia de predicciones del 100% entre PyTorch y ONNX.</p></div>
+        <div class="section-heading reveal"><div class="section-kicker">09 · Resultados</div><h2>El mejor modelo alcanzó precisión alta y exportación estable.</h2><p class="lead">El modelo 5 obtuvo 98.4% en intenciones, 99.55% en entidades y coincidencia de predicciones del 100% entre PyTorch y ONNX.</p></div>
         <div class="grid-2">
           <div class="chart-card reveal"><h3>Precisión final</h3><canvas id="barChart" width="520" height="300" aria-label="Gráfica de barras de precisión final"></canvas></div>
           <div class="chart-card reveal"><h3>Evolución de modelos</h3><canvas id="lineChart" width="520" height="300" aria-label="Gráfica de línea de evolución de modelos"></canvas></div>
@@ -956,14 +1136,15 @@
 
     <section id="comparacion">
       <div class="container">
-        <div class="section-heading reveal"><div class="section-kicker">09 · Comparación</div><h2>¿Qué hace diferente a Canvitas?</h2><p class="lead">Frente a enfoques basados en LLMs o pipelines más complejos, Canvitas prioriza ligereza, control explícito de ambigüedad y despliegue sencillo.</p></div>
+        <div class="section-heading reveal"><div class="section-kicker">10 · Comparación</div><h2>¿Qué hace diferente a Canvitas?</h2><p class="lead">Frente a enfoques basados en LLMs o pipelines más complejos, Canvitas prioriza ligereza, control explícito de ambigüedad y despliegue sencillo.</p></div>
         <div class="reveal"><table class="comparison"><thead><tr><th>Sistema</th><th>Enfoque</th><th>Diferencia de Canvitas</th></tr></thead><tbody><tr><td><strong>NL2API</strong></td><td>Usa LLMs para generar llamadas o JSON de API.</td><td>Canvitas usa MiniLM: menor costo, menor latencia y mayor control.</td></tr><tr><td><strong>Aila</strong></td><td>Asistente generativo integrado con Canvas.</td><td>Canvitas no genera contenido: traduce intenciones a acciones concretas.</td></tr><tr><td><strong>RASA + Canvas</strong></td><td>Pipeline conversacional con slot filling.</td><td>Canvitas usa un solo modelo multitarea para intención y entidades.</td></tr></tbody></table></div>
       </div>
     </section>
 
+
     <section id="futuro">
       <div class="container grid-2">
-        <div class="reveal"><div class="section-kicker">10 · Limitaciones</div><h2>Qué falta mejorar.</h2><p class="lead">Aunque los resultados son altos, el sistema aún depende de datos sintéticos y requiere un diálogo multi-turno completo para conservar contexto.</p><div class="example-box"><strong>Ejemplo:</strong> si el usuario dice “Revísalo”, Canvitas necesita contexto previo para saber a qué se refiere.</div></div>
+        <div class="reveal"><div class="section-kicker">11 · Limitaciones</div><h2>Qué falta mejorar.</h2><p class="lead">Aunque los resultados son altos, el sistema aún depende de datos sintéticos y requiere un diálogo multi-turno completo para conservar contexto.</p><div class="example-box"><strong>Ejemplo:</strong> si el usuario dice “Revísalo”, Canvitas necesita contexto previo para saber a qué se refiere.</div></div>
         <div class="timeline reveal">
           <div class="timeline-item"><div class="timeline-dot">1</div><div class="card pad"><h3>Dataset más natural</h3><p>Reescritura con modelos más avanzados y datos reales.</p></div></div>
           <div class="timeline-item"><div class="timeline-dot">2</div><div class="card pad"><h3>DST completo</h3><p>Seguimiento de estado para diálogos multi-turno.</p></div></div>
