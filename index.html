@@ -233,6 +233,218 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
+    /* Dark background visual system */
+    :root {
+      --bg: #06111f;
+      --card: rgba(8, 28, 45, 0.76);
+      --text: #eaf6ff;
+      --muted: #9fb4c8;
+      --line: rgba(125, 211, 252, 0.20);
+      --primary: #2dd4bf;
+      --primary-2: #38bdf8;
+      --accent: #60a5fa;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --success: #34d399;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+    }
+
+    .nav {
+      border-color: rgba(125, 211, 252, 0.18);
+      background: rgba(7, 24, 39, 0.74);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.30);
+      backdrop-filter: blur(20px);
+    }
+
+    .brand { color: #eaf6ff; }
+    .brand-mark {
+      color: #03111f;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 26px rgba(45, 212, 191, 0.28);
+      font-weight: 950;
+    }
+
+    .nav-links a { color: #b7c9da; }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(56, 189, 248, 0.14);
+      color: #e0f7ff;
+    }
+
+    .nav-pill,
+    .button.primary {
+      color: #03111f;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 14px 34px rgba(56, 189, 248, 0.27);
+    }
+
+    .button.secondary {
+      color: #d8efff;
+      background: rgba(8, 28, 45, 0.72);
+      border-color: rgba(125, 211, 252, 0.22);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.20);
+    }
+
+    .eyebrow {
+      border-color: rgba(125, 211, 252, 0.25);
+      background: rgba(8, 28, 45, 0.72);
+      color: #c8f5ff;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(14px);
+    }
+
+    .gradient-text {
+      background: linear-gradient(120deg, #2dd4bf, #38bdf8, #93c5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-kicker { color: #67e8f9; }
+
+    .hero-card,
+    .card,
+    .stat,
+    .chart-card {
+      border-color: rgba(125, 211, 252, 0.18);
+      background: rgba(8, 28, 45, 0.76);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .card h3,
+    .flow-step h3,
+    .chart-card h3,
+    .stat span,
+    .example-box strong { color: #f8fafc; }
+
+    .card p,
+    .card li,
+    .lead,
+    .stat span { color: #b7c9da; }
+
+    .example-box {
+      border-color: rgba(125, 211, 252, 0.18);
+      background: linear-gradient(135deg, rgba(8, 34, 54, 0.88), rgba(10, 45, 67, 0.78));
+      color: #eaf6ff;
+    }
+
+    .icon-box {
+      color: #bffaff;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(125, 211, 252, 0.16);
+    }
+
+    .code-pill {
+      color: #d9fbff;
+      background: rgba(56, 189, 248, 0.16);
+      border: 1px solid rgba(125, 211, 252, 0.18);
+    }
+
+    .browser {
+      border-color: rgba(125, 211, 252, 0.22);
+      background: rgba(5, 19, 32, 0.86);
+    }
+
+    .browser-top {
+      border-bottom-color: rgba(125, 211, 252, 0.16);
+      background: rgba(10, 33, 52, 0.90);
+    }
+
+    .lights span { background: #4b6b84; }
+    .url { color: #9fb4c8; }
+    .chat-demo { background: linear-gradient(180deg, rgba(5, 19, 32, 0.94), rgba(8, 28, 45, 0.94)); }
+    .bubble.user { color: #03111f; font-weight: 750; }
+    .bubble.ai {
+      background: rgba(14, 50, 76, 0.92);
+      color: #d8efff;
+      border: 1px solid rgba(125, 211, 252, 0.14);
+    }
+
+    .intent-panel {
+      border-color: rgba(125, 211, 252, 0.18);
+      background: rgba(6, 23, 38, 0.92);
+      color: #eaf6ff;
+    }
+
+    .bar { background: rgba(148, 163, 184, 0.22); }
+
+    .flow-step {
+      border-color: rgba(125, 211, 252, 0.18);
+      background: rgba(8, 28, 45, 0.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .flow-step p { color: #b7c9da; }
+    .flow-step:not(:last-child)::after,
+    .timeline-dot {
+      color: #03111f;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.22);
+      font-weight: 950;
+    }
+
+    .pipeline {
+      background: rgba(3, 17, 31, 0.88);
+      border: 1px solid rgba(125, 211, 252, 0.16);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .pipeline-node {
+      border-color: rgba(125, 211, 252, 0.16);
+      background: rgba(56, 189, 248, 0.07);
+    }
+
+    .arrow-circle {
+      color: #bffaff;
+      background: rgba(56, 189, 248, 0.18);
+    }
+
+    .token {
+      color: #f8fafc;
+      background: rgba(5, 19, 32, 0.62);
+      border-color: rgba(125, 211, 252, 0.18);
+    }
+
+    .token small { color: #67e8f9; }
+
+    .stat strong {
+      background: linear-gradient(120deg, #2dd4bf, #38bdf8, #93c5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .architecture {
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      background: linear-gradient(135deg, rgba(3, 17, 31, 0.94), rgba(12, 62, 82, 0.90));
+      box-shadow: var(--shadow);
+    }
+
+    .comparison {
+      background: rgba(8, 28, 45, 0.84);
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      box-shadow: var(--shadow);
+      color: #eaf6ff;
+    }
+
+    .comparison th,
+    .comparison td { border-bottom-color: rgba(125, 211, 252, 0.14); }
+    .comparison th {
+      color: #bffaff;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .comparison td { color: #b7c9da; }
+    .comparison td strong { color: #f8fafc; }
+
+    .final-quote {
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(125, 211, 252, 0.30), transparent 34%),
+        linear-gradient(135deg, rgba(3, 17, 31, 0.94), rgba(10, 68, 76, 0.92) 55%, rgba(7, 89, 133, 0.90));
+    }
+
     @media (max-width: 1100px) {
       .nav { width: calc(100% - 24px); }
       .nav-links a { padding: 8px 9px; font-size: 12px; }
@@ -542,8 +754,8 @@
           if (distance < maxDistance) {
             const opacity = (1 - distance / maxDistance) * 0.42;
             const gradient = networkCtx.createLinearGradient(a.x, a.y, b.x, b.y);
-            gradient.addColorStop(0, `rgba(15, 118, 110, ${opacity})`);
-            gradient.addColorStop(1, `rgba(2, 132, 199, ${opacity})`);
+            gradient.addColorStop(0, `rgba(45, 212, 191, ${opacity})`);
+            gradient.addColorStop(1, `rgba(56, 189, 248, ${opacity})`);
             networkCtx.strokeStyle = gradient;
             networkCtx.lineWidth = 1.35;
             networkCtx.beginPath();
@@ -558,7 +770,7 @@
         const pulseSize = Math.sin(node.pulse) * 0.7;
         networkCtx.beginPath();
         networkCtx.arc(node.x, node.y, node.r + pulseSize, 0, Math.PI * 2);
-        networkCtx.fillStyle = "rgba(2, 132, 199, 0.72)";
+        networkCtx.fillStyle = "rgba(56, 189, 248, 0.72)";
         networkCtx.fill();
 
         networkCtx.beginPath();
@@ -657,10 +869,10 @@
         const barH = chartH * (item.value / 100);
         const y = padding + chartH - barH;
         const gradient = ctx.createLinearGradient(0, y, 0, padding + chartH);
-        gradient.addColorStop(0, "#0284c7"); gradient.addColorStop(1, "#0f766e");
+        gradient.addColorStop(0, "#38bdf8"); gradient.addColorStop(1, "#2dd4bf");
         ctx.fillStyle = gradient; roundRect(ctx, x, y, barW, barH, 12); ctx.fill();
-        ctx.fillStyle = "#0f172a"; ctx.font = "bold 15px Inter, system-ui"; ctx.fillText(`${item.value}%`, x + 3, y - 12);
-        ctx.fillStyle = "#64748b"; ctx.font = "13px Inter, system-ui"; ctx.fillText(item.label, x - 10, h - 20);
+        ctx.fillStyle = "#eaf6ff"; ctx.font = "bold 15px Inter, system-ui"; ctx.fillText(`${item.value}%`, x + 3, y - 12);
+        ctx.fillStyle = "#9fb4c8"; ctx.font = "13px Inter, system-ui"; ctx.fillText(item.label, x - 10, h - 20);
       });
     }
 
@@ -683,7 +895,7 @@
       const chartW = w - padding * 2, chartH = h - padding * 2;
       const min = 90, max = 100;
       ctx.clearRect(0, 0, w, h);
-      ctx.strokeStyle = "#e2e8f0"; ctx.fillStyle = "#64748b"; ctx.font = "13px Inter, system-ui";
+      ctx.strokeStyle = "rgba(125, 211, 252, 0.18)"; ctx.fillStyle = "#9fb4c8"; ctx.font = "13px Inter, system-ui";
       for (let i = 0; i <= 5; i++) {
         const y = padding + (chartH / 5) * i;
         ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(w - padding, y); ctx.stroke();
@@ -703,13 +915,13 @@
         values.forEach((value, i) => {
           const p = point(value, i);
           ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill();
-          ctx.fillStyle = "#0f172a"; ctx.font = "bold 12px Inter, system-ui"; ctx.fillText(value.toFixed(1), p.x - 13, p.y - 13);
+          ctx.fillStyle = "#eaf6ff"; ctx.font = "bold 12px Inter, system-ui"; ctx.fillText(value.toFixed(1), p.x - 13, p.y - 13);
         });
       }
-      drawLine(data.map(d => d.intent), "#0284c7");
-      drawLine(data.map(d => d.entity), "#0f766e");
-      ctx.fillStyle = "#0284c7"; ctx.fillRect(w - 170, 20, 12, 12); ctx.fillStyle = "#64748b"; ctx.fillText("Intención", w - 150, 31);
-      ctx.fillStyle = "#0f766e"; ctx.fillRect(w - 170, 42, 12, 12); ctx.fillStyle = "#64748b"; ctx.fillText("Entidades", w - 150, 53);
+      drawLine(data.map(d => d.intent), "#38bdf8");
+      drawLine(data.map(d => d.entity), "#2dd4bf");
+      ctx.fillStyle = "#38bdf8"; ctx.fillRect(w - 170, 20, 12, 12); ctx.fillStyle = "#9fb4c8"; ctx.fillText("Intención", w - 150, 31);
+      ctx.fillStyle = "#2dd4bf"; ctx.fillRect(w - 170, 42, 12, 12); ctx.fillStyle = "#9fb4c8"; ctx.fillText("Entidades", w - 150, 53);
     }
 
     drawBarChart();
