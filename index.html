@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canvitas | Presentación Web</title>
+  <style>
+    :root {
+      --bg: #f7fafc;
+      --card: rgba(255, 255, 255, 0.84);
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #dbeafe;
+      --primary: #0f766e;
+      --primary-2: #0284c7;
+      --accent: #38bdf8;
+      --accent-soft: #e0f2fe;
+      --success: #10b981;
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.16), transparent 32%),
+        radial-gradient(circle at 90% 0%, rgba(20, 184, 166, 0.16), transparent 35%),
+        linear-gradient(180deg, #f8fbff 0%, #f7fafc 45%, #eef7fb 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    #networkBackground {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(248, 251, 255, 0.38), rgba(247, 250, 252, 0.54));
+      backdrop-filter: blur(0.2px);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      z-index: 1000;
+    }
+
+    .nav {
+      position: fixed;
+      top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 999;
+      width: min(1120px, calc(100% - 28px));
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid rgba(219, 234, 254, 0.9);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 850; letter-spacing: -0.04em; }
+    .brand-mark {
+      width: 34px; height: 34px; display: grid; place-items: center;
+      border-radius: 12px; color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 24px rgba(2, 132, 199, 0.22);
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--muted);
+      transition: 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--accent-soft); color: var(--primary-2); }
+
+    .nav-pill {
+      padding: 10px 15px;
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      font-weight: 750;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 12px 26px rgba(15, 118, 110, 0.22);
+    }
+
+    section { position: relative; padding: 96px 24px; }
+    .container { width: min(1120px, 100%); margin: 0 auto; }
+
+    .hero { min-height: 100vh; display: grid; align-items: center; padding-top: 130px; }
+    .hero-grid { display: grid; grid-template-columns: 1.18fr 0.82fr; gap: 56px; align-items: center; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; width: fit-content;
+      margin-bottom: 22px; padding: 9px 14px;
+      border: 1px solid rgba(14, 165, 233, 0.22); border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.05);
+      color: #075985; font-size: 13px; font-weight: 760;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--success); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.14); }
+
+    h1 { max-width: 920px; font-size: clamp(46px, 6.8vw, 82px); line-height: 1.03; letter-spacing: -0.025em; }
+    .gradient-text { background: linear-gradient(120deg, var(--primary), var(--primary-2), #2563eb); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { max-width: 720px; margin-top: 24px; color: var(--muted); font-size: 20px; line-height: 1.75; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 34px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 48px; padding: 0 19px; border: 1px solid transparent;
+      border-radius: 999px; cursor: pointer; font-weight: 800; transition: 0.2s ease;
+    }
+    .button.primary { color: white; background: linear-gradient(135deg, var(--primary), var(--primary-2)); box-shadow: 0 18px 34px rgba(2, 132, 199, 0.24); }
+    .button.secondary { color: var(--text); background: rgba(255, 255, 255, 0.75); border-color: rgba(203, 213, 225, 0.7); }
+    .button:hover { transform: translateY(-2px); }
+
+    .hero-card {
+      position: relative; min-height: 530px; padding: 24px;
+      border: 1px solid rgba(219, 234, 254, 0.9); border-radius: 38px;
+      background: rgba(255, 255, 255, 0.62); box-shadow: var(--shadow);
+      backdrop-filter: blur(20px); overflow: hidden;
+    }
+
+    .browser { position: relative; border: 1px solid rgba(203, 213, 225, 0.72); border-radius: 28px; background: #ffffff; overflow: hidden; }
+    .browser-top { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+    .lights { display: flex; gap: 7px; }
+    .lights span { width: 10px; height: 10px; border-radius: 999px; background: #cbd5e1; }
+    .url { color: #64748b; font-size: 12px; font-weight: 650; }
+    .chat-demo { padding: 20px; background: linear-gradient(180deg, #ffffff, #f8fbff); }
+
+    .bubble {
+      width: fit-content; max-width: 90%; margin-bottom: 14px; padding: 13px 15px;
+      border-radius: 18px; font-size: 14px; line-height: 1.55;
+      animation: float 4s ease-in-out infinite;
+    }
+    .bubble.user { margin-left: auto; color: white; background: linear-gradient(135deg, var(--primary), var(--primary-2)); border-bottom-right-radius: 6px; }
+    .bubble.ai { background: #eef6ff; color: #164e63; border-bottom-left-radius: 6px; animation-delay: 0.8s; }
+
+    .intent-panel { margin-top: 16px; padding: 16px; border: 1px solid #e2e8f0; border-radius: 24px; background: white; }
+    .intent-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; margin-top: 12px; }
+    .bar { height: 10px; border-radius: 999px; background: #e2e8f0; overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+
+    .section-heading { max-width: 820px; margin-bottom: 42px; }
+    .section-kicker { margin-bottom: 12px; color: var(--primary-2); font-size: 13px; font-weight: 850; letter-spacing: 0.22em; text-transform: uppercase; }
+    h2 { font-size: clamp(34px, 5vw, 58px); line-height: 1.06; letter-spacing: -0.025em; }
+    .lead { max-width: 760px; margin-top: 18px; color: var(--muted); font-size: 18px; line-height: 1.75; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .card { border: 1px solid rgba(203, 213, 225, 0.8); border-radius: var(--radius); background: var(--card); box-shadow: 0 18px 48px rgba(15, 23, 42, 0.06); backdrop-filter: blur(16px); }
+    .pad { padding: 28px; }
+    .icon-box { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 18px; border-radius: 18px; color: var(--primary-2); background: var(--accent-soft); font-weight: 900; }
+    .card h3 { font-size: 21px; letter-spacing: -0.012em; line-height: 1.18; }
+    .card p, .card li { color: var(--muted); line-height: 1.7; }
+
+    .example-box { margin-top: 20px; padding: 18px; border: 1px solid #dbeafe; border-radius: 22px; background: linear-gradient(135deg, #ffffff, #eff6ff); }
+    .code-pill { display: inline-flex; align-items: center; gap: 8px; margin: 5px 5px 0 0; padding: 8px 11px; border-radius: 999px; color: #075985; background: #e0f2fe; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; font-weight: 700; }
+
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+    .flow-step { position: relative; min-height: 180px; padding: 22px; border: 1px solid #dbeafe; border-radius: 26px; background: #ffffff; box-shadow: 0 16px 34px rgba(15, 23, 42, 0.05); }
+    .flow-step:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -16px; transform: translateY(-50%); z-index: 3; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 999px; color: white; background: var(--primary-2); font-weight: 900; }
+
+    .pipeline { margin-top: 28px; padding: 26px; border-radius: 30px; background: #0f172a; color: white; overflow: hidden; }
+    .pipeline-row { display: grid; grid-template-columns: 1fr 48px 1fr 48px 1fr 48px 1fr; align-items: center; gap: 12px; }
+    .pipeline-node { min-height: 110px; padding: 18px; border: 1px solid rgba(255,255,255,0.14); border-radius: 24px; background: rgba(255,255,255,0.07); }
+    .pipeline-node span { display: block; margin-top: 8px; color: #bae6fd; font-size: 13px; line-height: 1.5; }
+    .arrow-circle { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: rgba(56, 189, 248, 0.18); color: #7dd3fc; font-size: 24px; font-weight: 900; }
+
+    .annotation { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .token { padding: 12px 14px; border-radius: 16px; background: #f8fafc; border: 1px solid #e2e8f0; font-weight: 800; }
+    .token small { display: block; margin-top: 4px; color: var(--primary-2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .big-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+    .stat { padding: 28px; border-radius: 30px; background: #ffffff; border: 1px solid #dbeafe; box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06); }
+    .stat strong { display: block; font-size: clamp(38px, 5vw, 62px); line-height: 1; letter-spacing: -0.07em; background: linear-gradient(120deg, var(--primary), var(--primary-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat span { display: block; margin-top: 10px; color: var(--muted); font-weight: 700; }
+
+    .split-card { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    .architecture { position: relative; min-height: 430px; padding: 28px; border-radius: 34px; background: linear-gradient(135deg, #0f172a, #164e63); color: white; overflow: hidden; }
+    .architecture::before { content: ""; position: absolute; width: 360px; height: 360px; right: -160px; top: -120px; border-radius: 999px; background: radial-gradient(circle, rgba(125, 211, 252, 0.32), transparent 70%); }
+    .model-core { position: relative; z-index: 2; display: grid; place-items: center; width: min(260px, 100%); height: 150px; margin: 30px auto; border-radius: 34px; border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.10); text-align: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+    .heads { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .head { padding: 18px; border-radius: 22px; background: rgba(255, 255, 255, 0.10); border: 1px solid rgba(255, 255, 255, 0.14); }
+    .head p { color: #bae6fd; line-height: 1.6; margin-top: 6px; }
+
+    .chart-card { height: 390px; padding: 26px; border-radius: var(--radius); background: #ffffff; border: 1px solid #dbeafe; box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06); }
+    canvas { max-width: 100%; height: auto; }
+
+    .comparison { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 24px; background: white; box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06); }
+    .comparison th, .comparison td { padding: 18px; border-bottom: 1px solid #e2e8f0; text-align: left; vertical-align: top; }
+    .comparison th { color: #075985; background: #eff6ff; font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; }
+    .comparison tr:last-child td { border-bottom: 0; }
+
+    .timeline { display: grid; gap: 16px; margin-top: 30px; }
+    .timeline-item { display: grid; grid-template-columns: 62px 1fr; gap: 18px; align-items: start; }
+    .timeline-dot { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 20px; color: white; background: linear-gradient(135deg, var(--primary), var(--primary-2)); font-weight: 900; }
+
+    .final-quote { padding: 52px; border-radius: 38px; color: white; background: radial-gradient(circle at 20% 10%, rgba(125, 211, 252, 0.35), transparent 34%), linear-gradient(135deg, #0f172a, #134e4a 55%, #075985); box-shadow: var(--shadow); text-align: center; }
+    .final-quote h2 { max-width: 890px; margin: 0 auto; color: white; }
+    .final-quote p { max-width: 760px; margin: 22px auto 0; color: #dbeafe; font-size: 18px; line-height: 1.8; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+    @media (max-width: 960px) {
+      .nav-links, .nav-pill { display: none; }
+      .hero-grid, .grid-2, .grid-3, .split-card, .big-stats, .flow { grid-template-columns: 1fr; }
+      .flow-step:not(:last-child)::after { top: auto; right: 50%; bottom: -16px; transform: translateX(50%) rotate(90deg); }
+      .pipeline-row { grid-template-columns: 1fr; }
+      .arrow-circle { margin: 0 auto; transform: rotate(90deg); }
+      .hero-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="networkBackground" aria-hidden="true"></canvas>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav class="nav">
+    <a href="#inicio" class="brand" aria-label="Ir al inicio">
+      <span class="brand-mark">C</span>
+      <span>Canvitas</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#problema">Problema</a>
+      <a href="#solucion">Solución</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#modelo">Modelo</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#futuro">Futuro</a>
+    </div>
+    <a href="#conclusion" class="nav-pill">Ver conclusión</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> Sistema NLU + ToD para Canvas LMS</div>
+          <h1>Canvitas traduce <span class="gradient-text">lenguaje natural</span> en acciones reales.</h1>
+          <p>
+            Un sistema ligero basado en MiniLM que entiende consultas en español,
+            identifica intenciones, extrae entidades y prepara llamadas estructuradas
+            hacia la API de Canvas LMS.
+          </p>
+          <div class="hero-actions">
+            <a href="#problema" class="button primary">Iniciar recorrido <span>→</span></a>
+            <a href="#resultados" class="button secondary">Ver métricas</a>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="browser">
+            <div class="browser-top">
+              <div class="lights"><span></span><span></span><span></span></div>
+              <div class="url">canvitas.ai/demo</div>
+            </div>
+            <div class="chat-demo">
+              <div class="bubble user">Muéstrame mis calificaciones del curso IA</div>
+              <div class="bubble ai">Entendí que quieres consultar calificaciones. Detecté el curso: IA.</div>
+              <div class="intent-panel">
+                <strong>Ranking de intenciones</strong>
+                <div class="intent-row"><div><small>Top 1 · obtener_calificaciones</small><div class="bar"><span style="width: 94%"></span></div></div><strong>94%</strong></div>
+                <div class="intent-row"><div><small>Top 2 · listar_tareas</small><div class="bar"><span style="width: 32%"></span></div></div><strong>32%</strong></div>
+                <div class="intent-row"><div><small>Top 3 · listar_cursos</small><div class="bar"><span style="width: 18%"></span></div></div><strong>18%</strong></div>
+              </div>
+              <div class="bubble ai">Confianza suficiente. Acción lista para Canvas API.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problema">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-kicker">01 · Problema</div>
+          <h2>Canvas puede ser poderoso, pero no siempre es intuitivo.</h2>
+          <p class="lead">Los usuarios no expertos deben navegar menús, cursos, tareas y calificaciones. Canvitas reduce esa fricción permitiendo pedir acciones con frases naturales.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card pad reveal"><div class="icon-box">⌕</div><h3>Antes</h3><p>El usuario busca manualmente dentro de Canvas: curso → calificaciones → actividad → detalle.</p><div class="example-box"><strong>Ruta mental:</strong><br />“¿Dónde estaban mis calificaciones? ¿Era en tareas o en módulos?”</div></div>
+          <div class="card pad reveal"><div class="icon-box">✦</div><h3>Con Canvitas</h3><p>El usuario escribe lo que necesita y el sistema interpreta intención, entidades y acción.</p><div class="example-box"><strong>Consulta:</strong><br />“Muéstrame mis calificaciones”</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solucion">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-kicker">02 · Solución propuesta</div>
+          <h2>Un sistema híbrido: MiniLM entiende, ToD decide.</h2>
+          <p class="lead">Canvitas no depende de un LLM pesado. Usa un modelo MiniLM para NLU y un gestor de diálogo orientado a tareas para ejecutar, confirmar o preguntar cuando hay ambigüedad.</p>
+        </div>
+
+        <div class="pipeline reveal">
+          <div class="pipeline-row">
+            <div class="pipeline-node"><strong>Usuario</strong><span>Escribe una petición en español.</span></div><div class="arrow-circle">→</div>
+            <div class="pipeline-node"><strong>MiniLM</strong><span>Predice intención y entidades.</span></div><div class="arrow-circle">→</div>
+            <div class="pipeline-node"><strong>ToD</strong><span>Evalúa confianza y ambigüedad.</span></div><div class="arrow-circle">→</div>
+            <div class="pipeline-node"><strong>Canvas API</strong><span>Ejecuta una acción estructurada.</span></div>
+          </div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-step reveal"><h3>1. Petición</h3><p>“Ver tareas del curso IA”.</p></div>
+          <div class="flow-step reveal"><h3>2. Intención</h3><p><span class="code-pill">listar_tareas</span></p></div>
+          <div class="flow-step reveal"><h3>3. Entidad</h3><p><span class="code-pill">curso = IA</span></p></div>
+          <div class="flow-step reveal"><h3>4. Acción</h3><p>Preparar llamada compatible con Canvas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nlu">
+      <div class="container split-card">
+        <div class="reveal">
+          <div class="section-kicker">03 · Comprensión del lenguaje natural</div>
+          <h2>Canvitas hace dos tareas clave.</h2>
+          <p class="lead">Primero clasifica qué quiere hacer el usuario. Después detecta los datos importantes dentro de la frase: curso, tarea, fecha, usuario o identificadores.</p>
+          <div class="example-box"><strong>Frase:</strong> “Entrega de proyecto final mañana”<div class="annotation"><span class="token">Entrega<small>acción</small></span><span class="token">proyecto final<small>tarea</small></span><span class="token">mañana<small>fecha</small></span></div></div>
+        </div>
+        <div class="card pad reveal"><div class="icon-box">NLU</div><h3>Clasificación + NER</h3><p>La clasificación de intenciones responde: “¿qué quiere hacer?”. El reconocimiento de entidades responde: “¿con qué datos?”.</p><div class="example-box"><span class="code-pill">intención: consultar_entrega</span><span class="code-pill">tarea: proyecto final</span><span class="code-pill">fecha: mañana</span></div></div>
+      </div>
+    </section>
+
+    <section id="dataset">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-kicker">04 · Dataset sintético</div>
+          <h2>Como no existía un corpus de Canvas en español, se construyó uno.</h2>
+          <p class="lead">El generador sintético controlado V2 produjo ejemplos con diferentes longitudes, niveles de ambigüedad y variación lingüística.</p>
+        </div>
+        <div class="big-stats reveal">
+          <div class="stat"><strong>12,600</strong><span>ejemplos generados</span></div>
+          <div class="stat"><strong>36</strong><span>intenciones de usuario</span></div>
+          <div class="stat"><strong>33</strong><span>tipos de entidades IOB</span></div>
+        </div>
+        <div class="grid-3" style="margin-top: 24px;">
+          <div class="card pad reveal"><h3>Léxico</h3><p>Verbos de acción, verbos suaves, objetos semánticos, entidades realistas y modificadores.</p></div>
+          <div class="card pad reveal"><h3>Control</h3><p>Frases cortas, medias y largas con distribución 30% / 40% / 30%.</p></div>
+          <div class="card pad reveal"><h3>Ambigüedad</h3><p>Total, parcial o sin ambigüedad para entrenar decisiones conversacionales.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="generador">
+      <div class="container grid-2">
+        <div class="card pad reveal"><div class="section-kicker">05 · Generador V2</div><h2>Las frases no se generan al azar.</h2><p class="lead">El sistema combina plantillas gramaticales con léxico filtrado por intención, valida coherencia semántica y reintenta si la frase no cumple reglas.</p></div>
+        <div class="card pad reveal"><h3>Ejemplo de construcción</h3><div class="example-box"><p><strong>Plantilla:</strong> VERBO + OBJETO + del + CURSO</p><p><strong>Léxico:</strong> consultar + calificaciones + curso IA</p><p><strong>Resultado:</strong> “Quiero consultar las calificaciones del curso IA, por favor”</p><p><strong>Salida:</strong> <span class="code-pill">obtener_calificaciones</span> <span class="code-pill">curso = IA</span></p></div></div>
+      </div>
+    </section>
+
+    <section id="modelo">
+      <div class="container split-card">
+        <div class="architecture reveal"><div class="section-kicker" style="color:#7dd3fc;">06 · Arquitectura</div><h2 style="font-size: 40px; color:white;">Un modelo, dos salidas.</h2><div class="model-core"><div><strong style="font-size: 28px;">MiniLM</strong><p style="margin-top:8px;color:#bae6fd;">Transformer ligero multilingüe</p></div></div><div class="heads"><div class="head"><strong>Salida 1</strong><p>Clasificación de intenciones</p></div><div class="head"><strong>Salida 2</strong><p>Etiquetado token por token</p></div></div></div>
+        <div class="card pad reveal"><div class="section-kicker">Entrenamiento</div><h2 style="font-size: 40px;">Aprendizaje multitarea.</h2><p class="lead">Se entrenó con AdamW, batch size 64, 12 épocas y pérdida ponderada para priorizar entidades.</p><div class="example-box"><span class="code-pill">L = 0.5 · Lintent</span><span class="code-pill">+ 1.5 · Lentity</span></div><p style="margin-top:18px;color:var(--muted);line-height:1.7;">La ponderación se ajustó porque las intenciones saturaban rápido, mientras que NER necesitaba más peso para mejorar.</p></div>
+      </div>
+    </section>
+
+    <section id="resultados">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">07 · Resultados</div><h2>El mejor modelo alcanzó precisión alta y exportación estable.</h2><p class="lead">El modelo 5 obtuvo 98.4% en intenciones, 99.55% en entidades y coincidencia de predicciones del 100% entre PyTorch y ONNX.</p></div>
+        <div class="grid-2">
+          <div class="chart-card reveal"><h3>Precisión final</h3><canvas id="barChart" width="520" height="300" aria-label="Gráfica de barras de precisión final"></canvas></div>
+          <div class="chart-card reveal"><h3>Evolución de modelos</h3><canvas id="lineChart" width="520" height="300" aria-label="Gráfica de línea de evolución de modelos"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparacion">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">08 · Comparación</div><h2>¿Qué hace diferente a Canvitas?</h2><p class="lead">Frente a enfoques basados en LLMs o pipelines más complejos, Canvitas prioriza ligereza, control explícito de ambigüedad y despliegue sencillo.</p></div>
+        <div class="reveal"><table class="comparison"><thead><tr><th>Sistema</th><th>Enfoque</th><th>Diferencia de Canvitas</th></tr></thead><tbody><tr><td><strong>NL2API</strong></td><td>Usa LLMs para generar llamadas o JSON de API.</td><td>Canvitas usa MiniLM: menor costo, menor latencia y mayor control.</td></tr><tr><td><strong>Aila</strong></td><td>Asistente generativo integrado con Canvas.</td><td>Canvitas no genera contenido: traduce intenciones a acciones concretas.</td></tr><tr><td><strong>RASA + Canvas</strong></td><td>Pipeline conversacional con slot filling.</td><td>Canvitas usa un solo modelo multitarea para intención y entidades.</td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section id="futuro">
+      <div class="container grid-2">
+        <div class="reveal"><div class="section-kicker">09 · Limitaciones</div><h2>Qué falta mejorar.</h2><p class="lead">Aunque los resultados son altos, el sistema aún depende de datos sintéticos y requiere un diálogo multi-turno completo para conservar contexto.</p><div class="example-box"><strong>Ejemplo:</strong> si el usuario dice “Revísalo”, Canvitas necesita contexto previo para saber a qué se refiere.</div></div>
+        <div class="timeline reveal">
+          <div class="timeline-item"><div class="timeline-dot">1</div><div class="card pad"><h3>Dataset más natural</h3><p>Reescritura con modelos más avanzados y datos reales.</p></div></div>
+          <div class="timeline-item"><div class="timeline-dot">2</div><div class="card pad"><h3>DST completo</h3><p>Seguimiento de estado para diálogos multi-turno.</p></div></div>
+          <div class="timeline-item"><div class="timeline-dot">3</div><div class="card pad"><h3>Pruebas con usuarios</h3><p>Recolectar lenguaje auténtico y hacer fine-tuning.</p></div></div>
+          <div class="timeline-item"><div class="timeline-dot">4</div><div class="card pad"><h3>Despliegue en C++</h3><p>Usar ONNX Runtime y posible cuantización INT8.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="container"><div class="final-quote reveal"><h2>Canvitas acerca la inteligencia artificial al uso cotidiano de plataformas educativas.</h2><p>El proyecto demuestra que es posible traducir lenguaje natural en español a acciones dentro de Canvas LMS con un modelo ligero, eficiente y preparado para implementación futura.</p><div class="hero-actions" style="justify-content:center;"><a href="#inicio" class="button secondary">Volver al inicio</a></div></div></div>
+    </section>
+  </main>
+
+  <script>
+    const networkCanvas = document.getElementById("networkBackground");
+    const networkCtx = networkCanvas.getContext("2d");
+    let nodes = [];
+    let animationFrameId;
+
+    function resizeNetworkCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      networkCanvas.width = window.innerWidth * dpr;
+      networkCanvas.height = window.innerHeight * dpr;
+      networkCanvas.style.width = window.innerWidth + "px";
+      networkCanvas.style.height = window.innerHeight + "px";
+      networkCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      createNetworkNodes();
+    }
+
+    function createNetworkNodes() {
+      const area = window.innerWidth * window.innerHeight;
+      const count = Math.min(95, Math.max(42, Math.floor(area / 18000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 1.1,
+        pulse: Math.random() * Math.PI * 2
+      }));
+    }
+
+    function drawNetworkBackground() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      networkCtx.clearRect(0, 0, width, height);
+
+      nodes.forEach(node => {
+        node.x += node.vx;
+        node.y += node.vy;
+        node.pulse += 0.018;
+
+        if (node.x < -20) node.x = width + 20;
+        if (node.x > width + 20) node.x = -20;
+        if (node.y < -20) node.y = height + 20;
+        if (node.y > height + 20) node.y = -20;
+      });
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = 185;
+
+          if (distance < maxDistance) {
+            const opacity = (1 - distance / maxDistance) * 0.42;
+            const gradient = networkCtx.createLinearGradient(a.x, a.y, b.x, b.y);
+            gradient.addColorStop(0, `rgba(15, 118, 110, ${opacity})`);
+            gradient.addColorStop(1, `rgba(2, 132, 199, ${opacity})`);
+            networkCtx.strokeStyle = gradient;
+            networkCtx.lineWidth = 1.35;
+            networkCtx.beginPath();
+            networkCtx.moveTo(a.x, a.y);
+            networkCtx.lineTo(b.x, b.y);
+            networkCtx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(node => {
+        const pulseSize = Math.sin(node.pulse) * 0.7;
+        networkCtx.beginPath();
+        networkCtx.arc(node.x, node.y, node.r + pulseSize, 0, Math.PI * 2);
+        networkCtx.fillStyle = "rgba(2, 132, 199, 0.72)";
+        networkCtx.fill();
+
+        networkCtx.beginPath();
+        networkCtx.arc(node.x, node.y, node.r + 7 + pulseSize, 0, Math.PI * 2);
+        networkCtx.fillStyle = "rgba(56, 189, 248, 0.095)";
+        networkCtx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(drawNetworkBackground);
+    }
+
+    window.addEventListener("resize", resizeNetworkCanvas);
+    resizeNetworkCanvas();
+    drawNetworkBackground();
+
+    const progressBar = document.getElementById("progressBar");
+    const navLinks = [...document.querySelectorAll(".nav-links a")];
+    const reveals = [...document.querySelectorAll(".reveal")];
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + "%";
+    }
+
+    function updateActiveNav() {
+      let current = "";
+      document.querySelectorAll("section[id]").forEach(section => {
+        const top = section.offsetTop - 130;
+        if (window.scrollY >= top) current = section.getAttribute("id");
+      });
+      navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${current}`));
+    }
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    window.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); });
+    updateProgress(); updateActiveNav();
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + width, y, x + width, y + height, r);
+      ctx.arcTo(x + width, y + height, x, y + height, r);
+      ctx.arcTo(x, y + height, x, y, r);
+      ctx.arcTo(x, y, x + r, y, r);
+      ctx.closePath();
+    }
+
+    function drawBarChart() {
+      const canvas = document.getElementById("barChart");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const data = [
+        { label: "Intenciones", value: 98.4 },
+        { label: "Entidades", value: 99.55 },
+        { label: "ONNX", value: 100 }
+      ];
+      const w = canvas.width, h = canvas.height, padding = 54;
+      const chartH = h - padding * 2, chartW = w - padding * 2;
+      ctx.clearRect(0, 0, w, h);
+      ctx.font = "14px Inter, system-ui";
+      ctx.fillStyle = "#64748b";
+      ctx.strokeStyle = "#e2e8f0";
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding + (chartH / 4) * i;
+        ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(w - padding, y); ctx.stroke();
+        ctx.fillText(`${100 - i * 25}%`, 12, y + 5);
+      }
+      const barW = chartW / data.length * 0.52;
+      data.forEach((item, index) => {
+        const x = padding + index * (chartW / data.length) + (chartW / data.length - barW) / 2;
+        const barH = chartH * (item.value / 100);
+        const y = padding + chartH - barH;
+        const gradient = ctx.createLinearGradient(0, y, 0, padding + chartH);
+        gradient.addColorStop(0, "#0284c7"); gradient.addColorStop(1, "#0f766e");
+        ctx.fillStyle = gradient; roundRect(ctx, x, y, barW, barH, 12); ctx.fill();
+        ctx.fillStyle = "#0f172a"; ctx.font = "bold 15px Inter, system-ui"; ctx.fillText(`${item.value}%`, x + 3, y - 12);
+        ctx.fillStyle = "#64748b"; ctx.font = "13px Inter, system-ui"; ctx.fillText(item.label, x - 10, h - 20);
+      });
+    }
+
+    function drawLineChart() {
+      const canvas = document.getElementById("lineChart");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const data = [
+        { model: "M1", intent: 98.08, entity: 92.63 },
+        { model: "M2", intent: 98.42, entity: 97.66 },
+        { model: "M3", intent: 98.75, entity: 98.65 },
+        { model: "M4", intent: 98.33, entity: 98.20 },
+        { model: "M5", intent: 98.39, entity: 99.55 }
+      ];
+      const w = canvas.width, h = canvas.height, padding = 54;
+      const chartW = w - padding * 2, chartH = h - padding * 2;
+      const min = 90, max = 100;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = "#e2e8f0"; ctx.fillStyle = "#64748b"; ctx.font = "13px Inter, system-ui";
+      for (let i = 0; i <= 5; i++) {
+        const y = padding + (chartH / 5) * i;
+        ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(w - padding, y); ctx.stroke();
+        ctx.fillText(`${max - i * 2}%`, 15, y + 5);
+      }
+      data.forEach((item, i) => {
+        const x = padding + (chartW / (data.length - 1)) * i;
+        ctx.fillText(item.model, x - 8, h - 20);
+      });
+      function point(value, index) {
+        return { x: padding + (chartW / (data.length - 1)) * index, y: padding + chartH - ((value - min) / (max - min)) * chartH };
+      }
+      function drawLine(values, color) {
+        ctx.beginPath();
+        values.forEach((value, i) => { const p = point(value, i); if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
+        ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.stroke();
+        values.forEach((value, i) => {
+          const p = point(value, i);
+          ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill();
+          ctx.fillStyle = "#0f172a"; ctx.font = "bold 12px Inter, system-ui"; ctx.fillText(value.toFixed(1), p.x - 13, p.y - 13);
+        });
+      }
+      drawLine(data.map(d => d.intent), "#0284c7");
+      drawLine(data.map(d => d.entity), "#0f766e");
+      ctx.fillStyle = "#0284c7"; ctx.fillRect(w - 170, 20, 12, 12); ctx.fillStyle = "#64748b"; ctx.fillText("Intención", w - 150, 31);
+      ctx.fillStyle = "#0f766e"; ctx.fillRect(w - 170, 42, 12, 12); ctx.fillStyle = "#64748b"; ctx.fillText("Entidades", w - 150, 53);
+    }
+
+    drawBarChart();
+    drawLineChart();
+  </script>
+</body>
+</html>
